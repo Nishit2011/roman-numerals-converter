@@ -53,7 +53,11 @@ class Home extends Component {
       return false;
     }
     //checking for V and more than three repition of same character
-    if (pattern.test(romanNumber) || patternForV.test(romanNumber)) {
+    if (
+      pattern.test(romanNumber) ||
+      patternForV.test(romanNumber) ||
+      romanNumber === "VX"
+    ) {
       this.setState({
         roman: "",
         number: "",
@@ -84,13 +88,17 @@ class Home extends Component {
       ) {
         result -= myMap.get(romanNumber.charAt(i));
       } else {
-        // if (
-        //   myMap.get(romanNumber.charAt(i + 1)) <
-        //   myMap.get(romanNumber.charAt(i + 2))
-        // ) {
-        //   this.setState({ roman: "", number: "" });
-        //   return false;
-        // }
+        if (
+          myMap.get(romanNumber.charAt(i + 1)) <
+          myMap.get(romanNumber.charAt(i + 2))
+        ) {
+          this.setState({
+            roman: "",
+            number: "",
+            error: "Only one smaller value to the left..Retype"
+          });
+          return false;
+        }
         result += myMap.get(romanNumber.charAt(i));
       }
     }
@@ -99,7 +107,7 @@ class Home extends Component {
       this.setState({
         roman: "",
         number: "",
-        error: "Only alphabets please..Retype"
+        error: "Only valid alphabets please..Retype"
       });
       return false;
     }
@@ -121,6 +129,11 @@ class Home extends Component {
     }
 
     if (typedValue > 3999) {
+      this.setState({
+        roman: "",
+        number: "",
+        error: "Ooopsie...Not more than 3999..Retype"
+      });
       return false;
     }
     this.setState({ number: e.target.value, error: "" });

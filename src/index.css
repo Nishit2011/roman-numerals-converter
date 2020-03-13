@@ -4,7 +4,7 @@
 body {
   font-family: "Indie Flower", normal;
   font-size: 40px;
-  background-color: #f6d327;
+
   background-image: url("./gradient.jpg");
 }
 .app-container {
@@ -27,25 +27,36 @@ input {
   border-left-style: hidden;
   border-bottom-style: groove;
   background-color: transparent;
-  border-bottom-color: rgb(12, 12, 12);
+  border-bottom-color: rgb(12, 12, 12, 0.3);
   width: 700px;
   font-size: 30px;
   outline: none;
 }
 label {
   font-weight: 900;
-  color: white;
+  color: black;
+  text-shadow: 0 0 3px #ff0000, 0 0 5px #0000ff;
 }
 
 .heading {
   display: block;
   text-decoration: underline;
   font-size: 60px;
+  text-shadow: 0 0 3px #ff0000, 0 0 5px black;
+  letter-spacing: 5px;
+
+  padding: 10px;
+  border-radius: 60px;
 }
 
 .err {
   font-family: "Amatic SC", cursive;
   font-weight: bolder;
+  color: red;
+  text-shadow: 0 0 5px black, 0 0 3px red;
+  background: #000000;
+  border-radius: 5px;
+  letter-spacing: 2px;
 }
 
 input::placeholder {
