@@ -1,13 +1,55 @@
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC|Indie+Flower|Shadows+Into+Light&display=swap");
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Indie Flower", normal;
+  font-size: 40px;
+  background-color: #f6d327;
+  background-image: url("./gradient.jpg");
+}
+.app-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
+.body-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input {
+  margin: 50px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: transparent;
+  border-bottom-color: rgb(12, 12, 12);
+  width: 700px;
+  font-size: 30px;
+  outline: none;
+}
+label {
+  font-weight: 900;
+  color: white;
+}
+
+.heading {
+  display: block;
+  text-decoration: underline;
+  font-size: 60px;
+}
+
+.err {
+  font-family: "Amatic SC", cursive;
+  font-weight: bolder;
+}
+
+input::placeholder {
+  font-family: "Amatic SC", cursive;
+  color: #000000;
+  font-weight: bold;
 }
