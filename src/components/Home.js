@@ -10,10 +10,7 @@ class Home extends Component {
     numberArrowColor: "#000"
   };
 
-  fromRoman(e) {
-    this.setState({ roman: e.target.value.toUpperCase(), error: "" });
-    let romanNumber = e.target.value.toUpperCase();
-
+  validationFromRoman(romanNumber) {
     //pattern to identify three consecutive identical characters
     let pattern = /([a-z\d])\1\1\1/gi;
     //patter to identify more than one V
@@ -60,9 +57,14 @@ class Home extends Component {
         error: "That's not valid..Retype"
       });
       return false;
-    } else {
-      this.setState({ readonly: false });
     }
+  }
+
+  fromRoman(e) {
+    this.setState({ roman: e.target.value.toUpperCase(), error: "" });
+    let romanNumber = e.target.value.toUpperCase();
+
+    this.validationFromRoman(romanNumber);
 
     let result = 0;
     if (romanNumber == null) {
