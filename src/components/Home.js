@@ -27,17 +27,13 @@ class Home extends Component {
     let positionOfM = romanNumber.indexOf("M");
     let positionOfL = romanNumber.indexOf("L");
 
-    //checking if C.M,L is preceded by X
-    if (positionOfC === 1 || positionOfM === 1 || positionOfL === 1) {
-      let check =
-        romanNumber.charAt(positionOfC - 1) === "X" ||
-        romanNumber.charAt(positionOfL - 1) === "X" ||
-        romanNumber.charAt(positionOfM - 1) === "X";
-      if (!check) {
+    //check if only X to the left of L,M,C
+    if (positionOfL === 1 || positionOfM === 1 || positionOfC === 1) {
+      if (romanNumber.charAt(0) !== "X") {
         this.setState({
           roman: "",
           number: "",
-          error: "Can't type that..Retype"
+          error: "Only X to the left of L,M,C..Retype"
         });
         return false;
       }
