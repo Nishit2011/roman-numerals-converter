@@ -5,7 +5,9 @@ class Home extends Component {
     roman: "",
     number: "",
     readonly: false,
-    error: ""
+    error: "",
+    romanArrowColor: "#000",
+    numberArrowColor: "#000"
   };
 
   fromRoman(e) {
@@ -102,7 +104,7 @@ class Home extends Component {
       return false;
     }
 
-    this.setState({ number: result });
+    this.setState({ number: result, numberArrowColor: "green" });
   }
 
   toRoman(e) {
@@ -153,7 +155,7 @@ class Home extends Component {
     }
     let finalResult = result.join("");
     console.log("finalResult:-", finalResult);
-    this.setState({ roman: finalResult });
+    this.setState({ roman: finalResult, romanArrowColor: "green" });
   }
   render() {
     return (

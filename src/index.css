@@ -53,3 +53,15 @@ input::placeholder {
   color: #000000;
   font-weight: bold;
 }
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .heading {
+    font-size: 40px;
+  }
+  .app-container,
+  .body-container {
+    display: block;
+    font-size: 30px;
+  }
+}
