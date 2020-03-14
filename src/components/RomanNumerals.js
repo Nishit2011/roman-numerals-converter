@@ -4,13 +4,13 @@ class RomanNumerals extends Component {
   state = {
     roman: "",
     number: "",
-    readonly: false,
     error: "",
-    romanArrowColor: "#000",
-    numberArrowColor: "#000"
+    validation: true
   };
 
-  validationFromRoman(romanNumber) {
+  validationFromRoman(e) {
+    this.setState({ roman: e.target.value.toUpperCase(), error: "" });
+    let romanNumber = e.target.value.toUpperCase();
     //pattern to identify three consecutive identical characters
     let pattern = /([a-z\d])\1\1\1/gi;
     //patter to identify more than one V
@@ -27,22 +27,37 @@ class RomanNumerals extends Component {
     //check if only X to the left of L,M,C
     if (positionOfL === 1 || positionOfM === 1 || positionOfC === 1) {
       if (romanNumber.charAt(0) !== "X") {
-        this.setState({
-          roman: "",
-          number: "",
-          error: "Only X to the left of L,M,C..Retype"
-        });
+        this.setState(
+          {
+            error: "Only X to the left of L,M,C..Retype"
+          },
+          () => {
+            this.setState({
+              roman: "",
+              number: "",
+              validation: false
+            });
+          }
+        );
         return false;
       }
     }
 
     //checking for repition of L and D
     if (patternForD.test(romanNumber) || patternForL.test(romanNumber)) {
-      this.setState({
-        roman: "",
-        number: "",
-        error: "L and D only appear once..Retype"
-      });
+      this.setState(
+        {
+          error: "L and D only appear once..Retype"
+        },
+        () => {
+          this.setState({
+            roman: "",
+            number: "",
+            validation: false
+          });
+        }
+      );
+
       return false;
     }
     //checking for V and more than three repition of same character
@@ -51,21 +66,25 @@ class RomanNumerals extends Component {
       patternForV.test(romanNumber) ||
       romanNumber === "VX"
     ) {
-      this.setState({
-        roman: "",
-        number: "",
-        error: "That's not valid..Retype"
-      });
+      this.setState(
+        {
+          error: "That's not valid..Retype"
+        },
+        () => {
+          this.setState({
+            roman: "",
+            number: "",
+            validation: false
+          });
+        }
+      );
+
       return false;
     }
+    this.setState({ validation: true }, () => this.fromRoman(romanNumber));
   }
 
-  fromRoman(e) {
-    this.setState({ roman: e.target.value.toUpperCase(), error: "" });
-    let romanNumber = e.target.value.toUpperCase();
-
-    this.validationFromRoman(romanNumber);
-
+  fromRoman(romanNumber) {
     let result = 0;
     if (romanNumber == null) {
       result = 0;
@@ -100,7 +119,6 @@ class RomanNumerals extends Component {
         result += myMap.get(romanNumber.charAt(i));
       }
     }
-    console.log("result:-------", result);
     if (/\D/gi.test(result)) {
       this.setState({
         roman: "",
@@ -110,7 +128,7 @@ class RomanNumerals extends Component {
       return false;
     }
 
-    this.setState({ number: result, numberArrowColor: "green" });
+    this.setState({ number: result });
   }
 
   toRoman(e) {
@@ -166,7 +184,7 @@ class RomanNumerals extends Component {
     }
     let finalResult = result.join("");
     console.log("finalResult:-", finalResult);
-    this.setState({ roman: finalResult, romanArrowColor: "green" });
+    this.setState({ roman: finalResult });
   }
   render() {
     return (
@@ -188,7 +206,7 @@ class RomanNumerals extends Component {
               type='text'
               placeholder='Enter Roman Numeral'
               value={this.state.roman}
-              onChange={e => this.fromRoman(e)}
+              onChange={e => this.validationFromRoman(e)}
             />
           </div>
         </div>
