@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 
-import Home from "./components/Home";
+import RomanNumerals from "./components/RomanNumerals";
 import history from "./history/history";
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
       <Router history={history}>
         <div className='container'>
           <Switch>
-            <Route exact path='/' component={Home}></Route>
+            <Route exact path='/' component={RomanNumerals}></Route>
           </Switch>
         </div>
       </Router>
